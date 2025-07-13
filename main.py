@@ -38,10 +38,16 @@ def main():
 
     while message_count < 10:
         user_input = input("You: ")
+        if user_input.strip().lower() == "exit":
+            print("👋 Chat exited by user.")
+            break
+
         history += f"You: {user_input}\n"
 
         reply = send_to_bedrock(user_input, history)
-        print(f"Client: {reply.strip()}\n")
+        print("\n--- Client Reply ---")
+        print(reply.strip())
+        print("---------------------\n")
 
         history += f"Client: {reply.strip()}\n"
         message_count += 1
